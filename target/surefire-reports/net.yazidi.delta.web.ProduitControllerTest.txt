@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: net.yazidi.delta.web.ProduitControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.360 s <<< FAILURE! -- in net.yazidi.delta.web.ProduitControllerTest
+net.yazidi.delta.web.ProduitControllerTest.shouldGetAllProducts -- Time elapsed: 0.200 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "net.yazidi.delta.service.ProduitService.listProduits()" because "this.produitService" is null
+	at net.yazidi.delta.web.ProduitControllerTest.shouldGetAllProducts(ProduitControllerTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

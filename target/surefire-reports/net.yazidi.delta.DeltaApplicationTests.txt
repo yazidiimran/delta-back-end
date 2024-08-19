@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: net.yazidi.delta.DeltaApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.20 s -- in net.yazidi.delta.DeltaApplicationTests
