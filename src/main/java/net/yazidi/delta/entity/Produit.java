@@ -9,7 +9,7 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String codeBarre;
+    private String codeBarre; 
     private String libelle;
     private String image;
     @ManyToOne

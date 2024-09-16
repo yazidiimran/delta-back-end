@@ -24,6 +24,6 @@ public interface AchatRepository extends JpaRepository<Achat,Long> {
 
     @Query(value="select new ProduitAchatDTO(p.id,c.id,u.id,p.codeBarre,p.libelle,l.prixVente,l.quantite,p.image)" +
     " from Achat a,LignesAchat l, Produit p,Categorie c, Unite u where a.id=l.achat.id " +
-    "and l.produit.id=p.id and c.id=p.categorie.id and u.id=p.unite.id and p.codeBarre like %:keyword%")
+    "and l.produit.id=p.id and c.id=p.categorie.id and u.id=p.unite.id and (p.codeBarre like %:keyword% or p.libelle like %:keyword%)")
     List<ProduitAchatDTO> searchProduit(String keyword);
 }

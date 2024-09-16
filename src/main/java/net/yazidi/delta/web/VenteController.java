@@ -23,7 +23,7 @@ public class VenteController {
     private VenteService venteService;
     
     @PostMapping("/ventes")
-    public Vente create(@RequestBody Vente vente){
+    public VenteDto create(@RequestBody Vente vente){
         return venteService.create(vente);
     }
 

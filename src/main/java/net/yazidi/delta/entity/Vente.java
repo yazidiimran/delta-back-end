@@ -26,7 +26,7 @@ public class Vente {
     @ManyToOne
     private AppUser user;
     @ManyToOne
-    private Devis devis = new Devis();
+    private Devis devis;
     @OneToMany(mappedBy = "vente",cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<LignesVente> lignesVente;
 }

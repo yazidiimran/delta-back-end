@@ -1,16 +1,15 @@
 package net.yazidi.delta.service;
 
 import jakarta.transaction.Transactional;
+import net.yazidi.delta.dto.VenteDto;
 import net.yazidi.delta.entity.LignesVente;
 import net.yazidi.delta.entity.Vente;
+import net.yazidi.delta.mapper.VenteMapper;
 import net.yazidi.delta.repository.LignesVenteRepository;
 import net.yazidi.delta.repository.VenteRepository;
 import net.yazidi.delta.security.models.AppUser;
 import net.yazidi.delta.security.repository.AppUserRepository;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,17 +29,19 @@ public class VenteService {
     private LignesVenteRepository lignesVenteRepository;
 
     @Transactional
-    public Vente create(Vente vente){
+    public VenteDto create(Vente vente){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = userRepository.findByUsername(auth.getName());
         vente.setUser(user);
-        vente.setDevis(vente.getDevis()==null?null:vente.getDevis());
+        if(vente.getDevis()!=null){
+            vente.setDevis(vente.getDevis());
+        }
         Vente savedVente = venteRepository.save(vente);
         for (LignesVente ligneVente:vente.getLignesVente()) {
             ligneVente.setVente(savedVente);
             lignesVenteRepository.save(ligneVente);
         }
-        return savedVente;
+        return VenteMapper.venteToVenteDTO(savedVente);
     }
 
     public List<Vente> findAll() {
