@@ -5,6 +5,7 @@ import net.yazidi.delta.dto.VenteDto;
 import net.yazidi.delta.entity.LignesVente;
 import net.yazidi.delta.entity.Vente;
 import net.yazidi.delta.mapper.VenteMapper;
+import net.yazidi.delta.repository.ClientRepository;
 import net.yazidi.delta.repository.LignesVenteRepository;
 import net.yazidi.delta.repository.VenteRepository;
 import net.yazidi.delta.security.models.AppUser;
@@ -26,6 +27,9 @@ public class VenteService {
     private VenteRepository venteRepository;
 
     @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
     private LignesVenteRepository lignesVenteRepository;
 
     @Transactional
@@ -33,14 +37,7 @@ public class VenteService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = userRepository.findByUsername(auth.getName());
         vente.setUser(user);
-        if(vente.getDevis()!=null){
-            vente.setDevis(vente.getDevis());
-        }
         Vente savedVente = venteRepository.save(vente);
-        for (LignesVente ligneVente:vente.getLignesVente()) {
-            ligneVente.setVente(savedVente);
-            lignesVenteRepository.save(ligneVente);
-        }
         return VenteMapper.venteToVenteDTO(savedVente);
     }
 
