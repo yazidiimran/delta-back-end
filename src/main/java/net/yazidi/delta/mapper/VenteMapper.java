@@ -1,10 +1,10 @@
 package net.yazidi.delta.mapper;
 
 import net.yazidi.delta.dto.VenteDto;
-import net.yazidi.delta.entity.Vente;
+import net.yazidi.delta.entity.BonLivraison;
 
 public class VenteMapper {
-    public static VenteDto venteToVenteDTO(Vente vente){
+    public static VenteDto venteToVenteDTO(BonLivraison vente){
         VenteDto venteDto = VenteDto.builder()
             .id(vente.getId())
             .numero(vente.getNumero())

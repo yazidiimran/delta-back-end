@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.yazidi.delta.dto.LignesVenteDTO;
-import net.yazidi.delta.entity.LignesVente;
+import net.yazidi.delta.entity.LignesBonLivraison;
 
 public class LigneVenteMapper {
 
-    public static LignesVenteDTO LigneVenteToLigneVenteDTO(LignesVente ligne) {
+    public static LignesVenteDTO LigneVenteToLigneVenteDTO(LignesBonLivraison ligne) {
         LignesVenteDTO lignesVenteDTO = LignesVenteDTO.builder()
             .id(ligne.getId())
             .prix(ligne.getPrix())
@@ -20,7 +20,7 @@ public class LigneVenteMapper {
         return lignesVenteDTO;
     }
 
-    public static List<LignesVenteDTO> LignesVenteToLignesVenteDTO(List<LignesVente> lignesVente){
+    public static List<LignesVenteDTO> LignesVenteToLignesVenteDTO(List<LignesBonLivraison> lignesVente){
         List<LignesVenteDTO> lignesVenteDTOS = new ArrayList<>();
         lignesVente.forEach(ligneVente->{
             lignesVenteDTOS.add(LigneVenteToLigneVenteDTO(ligneVente));

@@ -2,7 +2,7 @@ package net.yazidi.delta.dto;
 
 import lombok.*;
 import net.yazidi.delta.entity.Devis;
-import net.yazidi.delta.entity.LignesVente;
+import net.yazidi.delta.entity.LignesBonLivraison;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

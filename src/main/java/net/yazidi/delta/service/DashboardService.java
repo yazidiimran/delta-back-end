@@ -3,10 +3,10 @@ package net.yazidi.delta.service;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import net.yazidi.delta.dto.StatistiqueDTO;
+import net.yazidi.delta.repository.BonLivraisonRepository;
 import net.yazidi.delta.repository.ClientRepository;
-import net.yazidi.delta.repository.DashboardRepository;
 import net.yazidi.delta.repository.FournisseurRepository;
-import net.yazidi.delta.repository.VenteRepository;
+
 
 @Service
 public class DashboardService {
@@ -20,20 +20,20 @@ public class DashboardService {
    
 
     @Autowired
-    private VenteRepository venteRepository;
+    private BonLivraisonRepository bonLivraisonRepository;
 
     public StatistiqueDTO getStatistique(int annee) {
         StatistiqueDTO statistiqueDTO = StatistiqueDTO.builder()
-        .CA(venteRepository.getCA(annee))
-        .CAP(venteRepository.getCAP(annee))
-        .CAS(venteRepository.getEvolutionCA(annee))
-        .CMDS(venteRepository.getEvolutionCMD(annee))
-        .CACAT(venteRepository.getCAbyCategorie(annee))
-        .CABYCLIENT(venteRepository.getCAbyClient(annee))
-        .CABYCOMMERCIAL(venteRepository.getCAbyCommercial(annee))
+        .CA(bonLivraisonRepository.getCA(annee))
+        .CAP(bonLivraisonRepository.getCAP(annee))
+        .CAS(bonLivraisonRepository.getEvolutionCA(annee))
+        .CMDS(bonLivraisonRepository.getEvolutionCMD(annee))
+        .CACAT(bonLivraisonRepository.getCAbyCategorie(annee))
+        .CABYCLIENT(bonLivraisonRepository.getCAbyClient(annee))
+        .CABYCOMMERCIAL(bonLivraisonRepository.getCAbyCommercial(annee))
         .clients(clientRepository.findAll().size())
         .fournsisseurs(fournsisseurRepository.findAll().size())
-        .commandes(venteRepository.getCmdCount(annee))
+        .commandes(bonLivraisonRepository.getCmdCount(annee))
         .build();
         return statistiqueDTO;
     }
