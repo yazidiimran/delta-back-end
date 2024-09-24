@@ -29,4 +29,5 @@ public class BonLivraison {
     private Devis devis;
     @OneToMany(mappedBy = "bonLivraison",cascade = CascadeType.MERGE)
     private List<LignesBonLivraison> lignesVente;
+    private String statut;
 }

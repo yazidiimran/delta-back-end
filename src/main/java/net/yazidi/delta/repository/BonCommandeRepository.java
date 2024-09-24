@@ -17,5 +17,8 @@ public interface BonCommandeRepository extends JpaRepository<BonCommande,Long> {
     " from BonCommande a,LignesBonCommande l, Produit p,Categorie c, Unite u where a.id=l.bonCommande.id " +
     "and l.produit.id=p.id and c.id=p.categorie.id and u.id=p.unite.id and (p.codeBarre like %:keyword% or p.libelle like %:keyword%)")
     List<ProduitEnStock> searchProduit(String keyword);
+
+    @Query(value="select count(*) from BonCommande b where year(b.date)=?1")
+    int getBonCommandesCount(int annee);
     
 }

@@ -24,5 +24,6 @@ public class StatistiqueDTO {
     private int clients;
     private int fournsisseurs;
     private int commerciaux;
-    private int commandes;
+    private int bonLivraisonCount;
+    private int bonCommandesCount;
 }
