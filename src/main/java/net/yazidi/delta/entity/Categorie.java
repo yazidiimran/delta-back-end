@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.ArrayList;
+
+ 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,8 +18,20 @@ public class Categorie {
     private Long id;
     private String libelle;
     private String image;
-    @OneToMany(mappedBy = "categorie")
+    @OneToMany(mappedBy = "categorie" ,fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<Produit> produits;
+    private List<Produit> produits = new ArrayList<>();
+
+     
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
+        for (Produit produit :produits) {
+            produit.setCategorie(this);
+        }
+    }
+
+    public List<Produit> getProduits() {
+        return this.produits ;
+    }
 }
 

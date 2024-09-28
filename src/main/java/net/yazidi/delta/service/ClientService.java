@@ -33,12 +33,8 @@ public class ClientService {
         }
     }
 
-    public Client getById(Long id) throws Exception{
-        if(clientRepository.findById(id).get()!=null){
-            return clientRepository.findById(id).get();
-        }else{
-            throw new Exception("Client inexistant !");
-        }
+    public Client getById(Long id)  {        
+        return clientRepository.findById(id).get();
     }
 
     public List<Client> getAll(){

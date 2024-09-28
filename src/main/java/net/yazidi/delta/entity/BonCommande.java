@@ -24,7 +24,7 @@ public class BonCommande {
     @ManyToOne
     private Fournisseur fournisseur;
     private String statut;
-
+     
     public void setLignesBonCommande(List<LignesBonCommande> lignesBonCommande) {
         this.lignesBonCommande = lignesBonCommande;
         for (LignesBonCommande ligneBonCommande :lignesBonCommande) {

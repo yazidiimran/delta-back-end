@@ -15,9 +15,10 @@ public class LignesBonCommande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private float prixAchat;
-    private float prixVente;
+    private float prix;
     private int quantite;
+    private int tva;
+    private int remise;
     @ManyToOne
     private Produit produit;
     @ManyToOne

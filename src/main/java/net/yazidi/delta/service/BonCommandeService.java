@@ -39,8 +39,5 @@ public class BonCommandeService {
         return boncommandeRepository.findAll();
     }
 
-    public BonCommande findOnById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findOnById'");
-    }
+     
 }

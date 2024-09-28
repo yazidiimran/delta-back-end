@@ -1,5 +1,17 @@
 package net.yazidi.delta;
 
+import net.yazidi.delta.entity.Categorie;
+import net.yazidi.delta.entity.Client;
+import net.yazidi.delta.entity.Entreprise;
+import net.yazidi.delta.entity.Fournisseur;
+import net.yazidi.delta.entity.Produit;
+import net.yazidi.delta.entity.Unite;
+import net.yazidi.delta.repository.CategoryRepository;
+import net.yazidi.delta.repository.ClientRepository;
+import net.yazidi.delta.repository.EntrepriseRepository;
+import net.yazidi.delta.repository.FournisseurRepository;
+import net.yazidi.delta.repository.ProduitRepository;
+import net.yazidi.delta.repository.UniteRepository;
 import net.yazidi.delta.security.models.AppRole;
 import net.yazidi.delta.security.models.AppUser;
 import net.yazidi.delta.security.repository.AppRoleRepository;
@@ -20,6 +32,24 @@ public class DeltaApplication {
 
 	@Autowired
     private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private CategoryRepository  categoryRepository;
+
+	@Autowired
+	private ProduitRepository produitRepository;
+
+	@Autowired
+	private UniteRepository uniteRepository;
+
+	@Autowired
+	private ClientRepository clientRepository;
+
+	@Autowired
+	private FournisseurRepository fournisseurRepository;
+
+	@Autowired
+	private EntrepriseRepository entrepriseRepository;
 
 	@Autowired
 	private AppRoleRepository appRoleRepository;
@@ -54,6 +84,57 @@ public class DeltaApplication {
 				AppUser user = new AppUser((long)2,"user","user", List.of(new AppRole((long) 1,"USER")));
 				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				appUserRepository.save(user);
+			}
+
+			if(categoryRepository.count()==0){
+				Categorie categorie = Categorie.builder().libelle("bébés").build();
+				categorie = categoryRepository.save(categorie);
+				Unite unite = Unite.builder().libelle("unité").build();
+				unite = uniteRepository.save(unite);
+				Produit produit = Produit.builder().libelle("Jhonson bébé").unite(unite).categorie(categorie).build();
+				produitRepository.save(produit);
+			}
+
+			if(clientRepository.count()==0){
+				Client client = Client.builder().nom("yazidi").build();
+				clientRepository.save(client);
+			}
+
+			if(fournisseurRepository.count()==0){
+				Fournisseur fournisseur = Fournisseur.builder().nom("atmani").build();
+				fournisseurRepository.save(fournisseur);
+			}
+
+			/*
+			 * I  E T I C
+			Formations – Développement informatique
+			Tél : 06 44 84 66 27 / 05 36 61 70 90
+			Email : contact@ieticberkane.com
+			Site web : www.ieticberkane.com
+			RIB Banque populaire: 157575212110822616000120 
+			RC: 5525  
+			IF: 20722450  
+			Siège social : 62, rue fes hay hassani berkane - Maroc
+			 */
+
+			if(entrepriseRepository.count()==0){
+				Entreprise entreprise = Entreprise.builder()
+					.raisonSociale("I  E T I C")
+					.description("Formations – Développement informatique")
+					.CNSS("432432424324")
+					.tel("+212 6 44 84 66 27")
+					.fax("+212 5 36 61 70 90")
+					.adresse("null")
+					.email("contact@ietic.com")
+					.siteweb("www.ietic.com")
+					.ICE("000156644000006")
+					.adresse("86 RUE SIDI AHMED ABERKANE HAY DAKHLA")
+					.RC("5525")
+					.IFF("20722450")
+					.ville("Berkane")
+					.pays("Maroc")
+					.build();
+				entrepriseRepository.save(entreprise);
 			}
 		};
 	}
