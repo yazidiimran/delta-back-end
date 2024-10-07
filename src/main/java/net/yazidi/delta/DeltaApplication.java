@@ -87,22 +87,30 @@ public class DeltaApplication {
 			}
 
 			if(categoryRepository.count()==0){
-				Categorie categorie = Categorie.builder().libelle("bébés").build();
-				categorie = categoryRepository.save(categorie);
+				Categorie categorie1 = Categorie.builder().libelle("Medicaments").build();
+				categorie1 = categoryRepository.save(categorie1);
+				Categorie categorie2 = Categorie.builder().libelle("Fourniture").build();
+				categorie2 = categoryRepository.save(categorie2);
 				Unite unite = Unite.builder().libelle("unité").build();
 				unite = uniteRepository.save(unite);
-				Produit produit = Produit.builder().libelle("Jhonson bébé").unite(unite).categorie(categorie).build();
-				produitRepository.save(produit);
+				Produit produit1 = Produit.builder().libelle("Doliprane").unite(unite).categorie(categorie1).build();
+				produitRepository.save(produit1);
+				Produit produit2 = Produit.builder().libelle("Fouteuille").unite(unite).categorie(categorie2).build();
+				produitRepository.save(produit2);
 			}
 
 			if(clientRepository.count()==0){
-				Client client = Client.builder().nom("yazidi").build();
-				clientRepository.save(client);
+				Client client1 = Client.builder().nom("Yazidi Client 1").build();
+				clientRepository.save(client1);
+				Client client2 = Client.builder().nom("Simo Client 2").build();
+				clientRepository.save(client2);
 			}
 
 			if(fournisseurRepository.count()==0){
-				Fournisseur fournisseur = Fournisseur.builder().nom("atmani").build();
-				fournisseurRepository.save(fournisseur);
+				Fournisseur fournisseu1 = Fournisseur.builder().nom("Atmani Fournisseur 1").build();
+				fournisseurRepository.save(fournisseu1);
+				Fournisseur fournisseur2 = Fournisseur.builder().nom("Majer Fournisseur 2").build();
+				fournisseurRepository.save(fournisseur2);
 			}
 
 			/*

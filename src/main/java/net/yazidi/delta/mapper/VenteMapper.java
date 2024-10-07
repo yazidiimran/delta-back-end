@@ -7,7 +7,7 @@ public class VenteMapper {
     public static VenteDto venteToVenteDTO(BonLivraison vente){
         VenteDto venteDto = VenteDto.builder()
             .id(vente.getId())
-            .numero(vente.getNumero())
+            .numero(vente.getReference())
             .date(vente.getDate())
             .client(ClientMapper.ClientToClientDTO(vente.getClient()))
             .devis(DevisMapper.devistoDevisDto(vente.getDevis()))

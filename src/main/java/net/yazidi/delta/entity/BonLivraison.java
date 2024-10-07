@@ -19,7 +19,7 @@ public class BonLivraison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String numero;
+    private String reference;
     private Date date = new Date();
     @ManyToOne
     private Client client;
