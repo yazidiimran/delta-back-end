@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import net.yazidi.delta.dto.StatistiqueDTO;
 import net.yazidi.delta.service.DashboardService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 public class DashboardController {
@@ -19,7 +22,7 @@ public class DashboardController {
     private DashboardService dashboardService;
 
     @GetMapping("/dashboard/{annee}")
-    public ResponseEntity<StatistiqueDTO> index(@PathVariable int annee) {
+    public ResponseEntity<?> index(@PathVariable int annee) {
         try {
             StatistiqueDTO statistique = dashboardService.getStatistique(annee);
             if (statistique != null) {
@@ -28,7 +31,15 @@ public class DashboardController {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content si aucune statistique pour l'année donnée
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 Internal Server Error en cas d'erreur serveur
+            // 500 Internal Server Error with error details
+            Map<String, Object> body = new HashMap<>();
+            body.put("statusCode", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            body.put("message", "An internal server error occurred");
+            body.put("error", e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 Internal Server Error en cas d'erreur serveur
         }
     }
 }

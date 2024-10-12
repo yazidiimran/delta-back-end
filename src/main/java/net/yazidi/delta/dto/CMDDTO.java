@@ -22,5 +22,5 @@ public class CMDDTO {
     @Id
     private int id;
     private long nombre;
-    private Date date;
+    private LocalDate date;
 }

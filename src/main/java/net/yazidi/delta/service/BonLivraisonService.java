@@ -1,6 +1,7 @@
 package net.yazidi.delta.service;
 
 import jakarta.transaction.Transactional;
+import net.yazidi.delta.entity.BonCommande;
 import net.yazidi.delta.entity.BonLivraison;
 import net.yazidi.delta.repository.BonLivraisonRepository;
 import net.yazidi.delta.security.models.AppUser;
@@ -34,5 +35,8 @@ public class BonLivraisonService {
         return this.bonLivraisonRepository.findAll();
     }
 
-    
+    public BonLivraison findOneById(Long id){
+        return bonLivraisonRepository.findById(id).get();
+    }
+
 }

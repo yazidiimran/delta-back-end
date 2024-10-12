@@ -17,8 +17,8 @@ import java.util.List;
 public class VenteDto {
     private Long id;
     private String numero;
-    private Date date = new Date();
+    private LocalDate date;
     private ClientDTO client;
     private DevisDTO devis;
-    private List<LignesVenteDTO> lignesVente = new ArrayList<>();
+    private List<LignesVenteDTO> lignesBonLivraison = new ArrayList<>();
 }

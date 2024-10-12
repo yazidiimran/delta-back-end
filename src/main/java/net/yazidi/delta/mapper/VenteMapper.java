@@ -11,7 +11,7 @@ public class VenteMapper {
             .date(vente.getDate())
             .client(ClientMapper.ClientToClientDTO(vente.getClient()))
             .devis(DevisMapper.devistoDevisDto(vente.getDevis()))
-            .lignesVente(LigneVenteMapper.LignesVenteToLignesVenteDTO(vente.getLignesVente()))
+            .lignesBonLivraison(LigneVenteMapper.LignesVenteToLignesVenteDTO(vente.getLignesBonLivraison()))
             .build();
 
         return venteDto;

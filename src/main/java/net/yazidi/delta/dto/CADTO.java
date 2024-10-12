@@ -23,5 +23,5 @@ public class CADTO {
     @Id
     private double id;
     private double montant;
-    private Date date;
+    private LocalDate date;
 }
