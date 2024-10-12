@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up JDK 17 (or your specific version)
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Cache Maven dependencies
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Build the project with Maven
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      # Deploy to a remote server (e.g., via SSH)
+      - name: Deploy to Server
+        if: github.ref == 'refs/heads/main'
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_KEY: ${{ secrets.SERVER_KEY }}
+        run: |
+          scp -i $SERVER_KEY target/your-spring-boot-app.jar $SERVER_USER@$SERVER_HOST:/path/to/deployment/
+          ssh -i $SERVER_KEY $SERVER_USER@$SERVER_HOST "cd /path/to/deployment/ && ./deploy-script.sh"
