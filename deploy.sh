@@ -1,4 +1,4 @@
-mvn -DskipTests package
+mvn  package
 sudo docker build -t yazidi112/delta .
 sudo docker push yazidi112/delta
 
