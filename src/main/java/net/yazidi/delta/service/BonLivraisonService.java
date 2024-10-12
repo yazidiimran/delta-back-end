@@ -35,13 +35,5 @@ public class BonLivraisonService extends AbstractService<BonLivraison,Long>{
     JpaRepository<BonLivraison, Long> getRepository() {
         return this.bonLivraisonRepository;
     }
-<<<<<<< HEAD
-    
-=======
 
-    public BonLivraison findOneById(Long id){
-        return bonLivraisonRepository.findById(id).get();
-    }
-
->>>>>>> origin/main
 }
