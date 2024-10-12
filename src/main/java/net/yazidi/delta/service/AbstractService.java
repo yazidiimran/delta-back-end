@@ -7,28 +7,28 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.yazidi.delta.entity.Objectif;
 
-public class AbstractService <ENTITY,ID>{
+public abstract class AbstractService <ENTITY,ID> implements IService<ENTITY,ID>{
 
-    @Autowired
-    private JpaRepository<ENTITY,ID> repository;
 
-    public ENTITY save(ENTITY entity){
-        return this.repository.save(entity);
-    }
+    abstract JpaRepository<ENTITY,ID> getRepository();
 
-    public ENTITY update(ENTITY entity, ID id) {
-        return this.repository.save(entity);
-    }
-
+    @Override
     public List<ENTITY> findAll() {
-        return this.repository.findAll();
+        return this.getRepository().findAll();
     }
 
-    public ENTITY findById(ID id) {
-        return this.repository.findById(id).get();
-    }
-
+    @Override
     public void deleteById(ID id) {
-        repository.deleteById(id);
+        this.getRepository().deleteById(id);
+    }
+
+    @Override
+    public ENTITY save(ENTITY entity) {
+        return this.getRepository().save(entity);
+    }
+
+    @Override
+    public ENTITY findById(ID id) {
+        return this.getRepository().findById(id).get();
     }
 }

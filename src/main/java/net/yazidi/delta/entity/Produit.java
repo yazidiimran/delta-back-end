@@ -16,5 +16,4 @@ public class Produit {
     private Unite unite;
     @ManyToOne
     private Categorie categorie;
-
 }

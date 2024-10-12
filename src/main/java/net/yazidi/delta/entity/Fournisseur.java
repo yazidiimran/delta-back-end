@@ -1,10 +1,10 @@
 package net.yazidi.delta.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,4 +20,7 @@ public class Fournisseur {
     private String prenom;
     private String adresse;
     private String tel;
+    @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<BonCommande> bonCommandes;
 }

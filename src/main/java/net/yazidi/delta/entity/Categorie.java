@@ -18,7 +18,7 @@ public class Categorie {
     private Long id;
     private String libelle;
     private String image;
-    @OneToMany(mappedBy = "categorie" ,fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "categorie" ,fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
     private List<Produit> produits = new ArrayList<>();
 

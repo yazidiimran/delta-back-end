@@ -15,6 +15,12 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private AppUserRepository userRepository;
 
+    public MyUserDetailsService() {}
+
+    public MyUserDetailsService(AppUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         AppUser user = userRepository.findByUsername(username);

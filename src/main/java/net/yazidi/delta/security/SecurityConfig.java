@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+
 @EnableWebSecurity
 public class SecurityConfig {
     @Value("${secret.key}")
@@ -60,6 +61,7 @@ public class SecurityConfig {
                 .cors(cors -> corsConfigurationSource())
                 .sessionManagement(sm->sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(ar->ar.requestMatchers("/public/**","/swagger**").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/**").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/admin/**").hasAuthority("SCOPE_ROLE_ADMIN"))
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
