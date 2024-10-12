@@ -23,5 +23,6 @@ public class LignesBonLivraison {
     @ManyToOne
     private Produit produit;
     @ManyToOne
+    @JsonBackReference
     private BonLivraison bonLivraison;
 }

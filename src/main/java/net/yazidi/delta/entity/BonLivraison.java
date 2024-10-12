@@ -19,15 +19,23 @@ public class BonLivraison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String numero;
-    private Date date = new Date();
+    private String reference;
+    private LocalDate date;
     @ManyToOne
     private Client client;
     @ManyToOne
     private AppUser user;
     @ManyToOne
     private Devis devis;
-    @OneToMany(mappedBy = "bonLivraison",cascade = CascadeType.MERGE)
-    private List<LignesBonLivraison> lignesVente;
+    @OneToMany(mappedBy = "bonLivraison",fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<LignesBonLivraison> lignesBonLivraison;
     private String statut;
+
+    public void setLignesBonLivraison(List<LignesBonLivraison> lignesBonLivraison) {
+        this.lignesBonLivraison = lignesBonLivraison;
+        for (LignesBonLivraison ligneBonLivraison :lignesBonLivraison) {
+            ligneBonLivraison.setBonLivraison(this);
+        }
+    }
 }

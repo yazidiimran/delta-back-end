@@ -1,5 +1,6 @@
 package net.yazidi.delta.web;
 
+import net.yazidi.delta.entity.BonCommande;
 import net.yazidi.delta.entity.BonLivraison;
 import net.yazidi.delta.service.BonLivraisonService;
 
@@ -24,4 +25,14 @@ public class BonLivraisonController extends AbstractController<BonLivraison,Long
         return this.bonLivraisonService;
     }
 
+
+    @GetMapping("/bonLivraisons/{id}")
+    public ResponseEntity<BonLivraison> findOneById(@PathVariable Long id) {
+        BonLivraison bonLivraison = bonLivraisonService.findOneById(id);
+        if (bonLivraison != null) {
+            return ResponseEntity.ok(bonLivraison); // 200 OK avec la commande trouvée
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // 404 Not Found si la commande n'existe pas
+        }
+    }
 }
