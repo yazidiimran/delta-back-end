@@ -46,5 +46,5 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_KEY: ${{ secrets.SERVER_KEY }}
         run: |
-          scp -i $SERVER_KEY target/your-spring-boot-app.jar $SERVER_USER@$SERVER_HOST:/path/to/deployment/
-          ssh -i $SERVER_KEY $SERVER_USER@$SERVER_HOST "cd /path/to/deployment/ && ./deploy-script.sh"
+          scp -i $SERVER_KEY target/delta-0.0.1-SNAPSHOT.jar $SERVER_USER@$SERVER_HOST:/home/ubuntu/
+          ssh -i $SERVER_KEY $SERVER_USER@$SERVER_HOST "cd /home/ubuntu/ && ./deploy-script.sh"
