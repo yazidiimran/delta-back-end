@@ -36,7 +36,7 @@ jobs:
 
       # Build the project with Maven
       - name: Build with Maven
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       # Deploy to a remote server (e.g., via SSH)
       - name: Deploy to Server

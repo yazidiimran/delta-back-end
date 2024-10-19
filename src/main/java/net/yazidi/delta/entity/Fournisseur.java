@@ -23,4 +23,8 @@ public class Fournisseur {
     @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<BonCommande> bonCommandes;
+
+    public Fournisseur(Long id) {
+        this.id = id;
+    }
 }
