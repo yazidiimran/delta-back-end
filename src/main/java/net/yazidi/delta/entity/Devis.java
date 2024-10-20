@@ -1,13 +1,11 @@
 package net.yazidi.delta.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Setter
@@ -20,9 +18,12 @@ public class Devis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String numero;
+    private String reference;
     private LocalDate dateCreation;
     private LocalDate dateValidation;
     @ManyToOne
     private Client client;
+    @OneToMany(mappedBy = "devis",fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<LignesDevis> lignesDevis;
 }

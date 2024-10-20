@@ -1,5 +1,6 @@
 package net.yazidi.delta.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +26,9 @@ public class LignesDevis {
     private double quantite;
     private double tva;
     private double remise;
-    @ManyToOne()
-    private Devis devis;
     @ManyToOne
     private Produit produit;
+    @ManyToOne
+    @JsonBackReference
+    private Devis devis;
 }

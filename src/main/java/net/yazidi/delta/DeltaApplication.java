@@ -93,9 +93,9 @@ public class DeltaApplication {
 				categorie2 = categoryRepository.save(categorie2);
 				Unite unite = Unite.builder().libelle("unité").build();
 				unite = uniteRepository.save(unite);
-				Produit produit1 = Produit.builder().libelle("Doliprane").unite(unite).categorie(categorie1).build();
+				Produit produit1 = Produit.builder().prix(10.4).libelle("Doliprane").unite(unite).categorie(categorie1).build();
 				produitRepository.save(produit1);
-				Produit produit2 = Produit.builder().libelle("Fouteuille").unite(unite).categorie(categorie2).build();
+				Produit produit2 = Produit.builder().prix(12.6).libelle("Fouteuille").unite(unite).categorie(categorie2).build();
 				produitRepository.save(produit2);
 			}
 
